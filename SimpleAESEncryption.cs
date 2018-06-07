@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-// ReSharper disable MemberCanBePrivate.Global
 
 namespace DUCK.Crypto
 {
@@ -62,7 +61,7 @@ namespace DUCK.Crypto
 		/// <returns>The original plainText string.</returns>
 		public static string Decrypt(string encryptedText, string iv, string password)
 		{
-			using (Aes aes = Aes.Create())
+			using (var aes = Aes.Create())
 			{
 				var ivBytes = Convert.FromBase64String(iv);
 				var encryptedTextBytes = Convert.FromBase64String(encryptedText);

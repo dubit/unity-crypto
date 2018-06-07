@@ -1,7 +1,7 @@
 {
     "name": "DUCK.Crypto",
     "references": [
-        "crypto.asmdef"
+        "Crypto"
     ],
     "optionalUnityReferences": [
         "TestAssemblies"
