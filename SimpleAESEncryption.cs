@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+// ReSharper disable MemberCanBePrivate.Global
 
 namespace DUCK.Crypto
 {
@@ -23,7 +24,7 @@ namespace DUCK.Crypto
 		/// <returns>An AESEncryptedText object containing the encrypted string and the IV value required to decrypt it.</returns>
 		public static AESEncryptedText Encrypt(string plainText, string password)
 		{
-			using (Aes aes = Aes.Create())
+			using (var aes = Aes.Create())
 			{
 				aes.GenerateIV();
 				aes.Key = ConvertToKeyBytes(aes, password);
