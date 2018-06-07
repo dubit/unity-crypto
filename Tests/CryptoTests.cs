@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using NUnit.Framework;
+using UnityEditor.VersionControl;
 
 namespace DUCK.Crypto.Tests
 {
@@ -27,7 +28,8 @@ namespace DUCK.Crypto.Tests
 			var encryptionResult = SimpleAESEncryption.Encrypt(plaintext, password1);
 
 			Assert.IsTrue(!string.IsNullOrEmpty(encryptionResult.EncryptedText));
-			Assert.IsTrue(!encryptionResult.EncryptedText.Equals(plaintext));
+
+			Assert.AreNotEqual(plaintext, encryptionResult.EncryptedText);
 		}
 
 		[Test]
@@ -36,7 +38,7 @@ namespace DUCK.Crypto.Tests
 			var encryptionResult = SimpleAESEncryption.Encrypt(plaintext, password1);
 			var decryptedText = SimpleAESEncryption.Decrypt(encryptionResult, password1);
 
-			Assert.IsTrue(decryptedText.Equals(plaintext));
+			Assert.AreEqual(plaintext, decryptedText);
 		}
 
 		[Test]
@@ -68,7 +70,9 @@ namespace DUCK.Crypto.Tests
 			var decryptedText = SimpleAESEncryption.Decrypt(encryptionResult.EncryptedText, exampleValidIV, password1);
 
 			Assert.IsTrue(!string.IsNullOrEmpty(encryptionResult.EncryptedText));
-			Assert.IsTrue(!encryptionResult.EncryptedText.Equals(plaintext));
+
+			Assert.AreNotEqual(plaintext, encryptionResult.EncryptedText);
+			Assert.AreNotEqual(plaintext, decryptedText);
 		}
 
 		[Test]
